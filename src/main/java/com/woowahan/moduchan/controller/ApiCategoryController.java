@@ -34,7 +34,8 @@ public class ApiCategoryController {
 
     @ApiOperation(value = "카테고리 조회", notes = "특정 카테고리의 정보를 조회합니다.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "조회 성공")
+            @ApiResponse(code = 200, message = "조회 성공"),
+            @ApiResponse(code = 400, message = "존재하지 않는 카테고리 조회")
             //error에 대한 설명 추가
     })
     @GetMapping("/{cid}")
@@ -44,7 +45,8 @@ public class ApiCategoryController {
 
     @ApiOperation(value = "카테고리별 특정 페이지의 프로젝트 조회", notes = "특정 페이지의 프로젝트 정보를 조회합니다.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "조회 성공")
+            @ApiResponse(code = 200, message = "조회 성공"),
+            @ApiResponse(code = 400, message = "존재하지 않는 카테고리 조회")
             //error에 대한 설명 추가
     })
     @GetMapping("/{cid}/last/{lastIndex}")

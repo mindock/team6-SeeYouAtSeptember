@@ -53,11 +53,13 @@ public class CategoryService {
 
     private List<ProjectDTO> getProjectsOfOneCategory(Long cid, Long lastIndex) {
         if (lastIndex == 0) {
-            return projectRepository.findTop9ByCategoryOrderByIdDesc(categoryRepository.findById(cid).orElseThrow(RuntimeException::new))
+            return projectRepository.findTop9ByCategoryOrderByIdDesc(categoryRepository.findById(cid)
+                    .orElseThrow(() -> new CategoryNotFoundException("cid: " + cid)))
                     .stream().map(project -> project.toDTO()).collect(Collectors.toList());
         }
         return projectRepository
-                .findTop9ByCategoryAndIdLessThanOrderByIdDesc(categoryRepository.findById(cid).orElseThrow(RuntimeException::new), lastIndex)
+                .findTop9ByCategoryAndIdLessThanOrderByIdDesc(categoryRepository.findById(cid)
+                        .orElseThrow(() -> new CategoryNotFoundException("cid: " + cid)), lastIndex)
                 .stream().map(project -> project.toDTO()).collect(Collectors.toList());
     }
 }
