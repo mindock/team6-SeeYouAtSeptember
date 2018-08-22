@@ -148,7 +148,6 @@ class Category {
 }
 
 
-
 window.addEventListener("DOMContentLoaded", () => {
     new CategoryManager();
 })
